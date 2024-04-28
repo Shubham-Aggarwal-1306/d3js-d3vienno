@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+    <script>
+        let canvas = d3.select("body")
+            .append("svg")
+            .attr("width", 500)
+            .attr("height", 500)
+            .append("g")
+            .attr("transform", "translate(50,50)");
+
+        var tree = d3.layout.tree()
+            .size([400, 400])
+        
+        d3.json("d.json", function(data) {
+            var nodes = tree.nodes(data);
+            var links = tree.links(nodes);
+            console.log(links);
+            console.log(nodes);
+
+            var node = canvas.selectAll(".node")
+                .data(nodes)
+                .enter()
+                .append("g")
+                .attr("class", "node")
+                .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+            
+            node.append("circle")
+                .attr("r", 5)
+                .attr("fill", "cadetblue");
+
+            var diagonal = d3.svg.diagonal()
+                .projection(function(d) { return [d.y, d.x]; });
+
+            canvas.selectAll(".link")
+                .data(links)
+                .enter()
+                .append("path")
+                .attr("class", "link")
+                .attr("fill", "none")
+                .attr("stroke", "black")
+                .attr("d", diagonal);
+
+            
+            canvas.selectAll("text")
+                .data(nodes)
+                .enter()
+                .append("text")
+                .text(function(d) { return d.name; })
+                .attr("x", function(d) { return d.y - 10; })
+                .attr("y", function(d) { return d.x - 10; })
+        });
+    </script>
+    
+</body>
+</html>

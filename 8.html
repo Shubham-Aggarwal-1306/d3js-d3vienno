@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+    <p>
+        This is a Paragraph
+    </p>
+    <script>
+        // Transitions
+        let canvas = d3.select('body')
+            .append('svg')
+            .attr('width', 500)
+            .attr('height', 500)
+            .attr('style', 'border: 1px solid black');
+        let circle = canvas.append('circle')
+            .attr('cx', 250)
+            .attr('cy', 250)
+            .attr('r', 50)
+            .attr('fill', 'red');
+        
+        circle.transition()
+            .duration(2000)
+            .delay(1000)
+            .attr('r', 25)
+            .attr('fill', 'blue');
+    </script>
+    
+</body>
+</html>

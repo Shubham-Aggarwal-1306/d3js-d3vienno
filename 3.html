@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+    <p>
+        This is a Paragraph
+    </p>
+    <script>
+        let canvas = d3.select("body")
+        .append("svg")
+        .attr("width", 500)
+        .attr("height", 500)
+        .style("border", "1px solid black");
+
+        let circle = canvas.append("circle")
+        .attr("cx", 250)
+        .attr("cy", 250)
+        .attr("r", 50)
+        .attr("fill", "red");
+
+        let rect = canvas.append("rect")
+        .attr("width", 100)
+        .attr("height", 50);
+
+
+        let line = canvas.append("line")
+        .attr("x1", 0)
+        .attr("y1", 100)
+        .attr("x2", 400)
+        .attr("y2", 400)
+        .attr("stroke", "green")
+        .attr("stroke-width", 10);
+    </script>
+    
+</body>
+</html>

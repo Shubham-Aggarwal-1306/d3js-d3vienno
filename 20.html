@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+    <script>
+        var canvas = d3.select("body")
+            .append("svg")
+            .attr("width",760)
+            .attr("height", 700);
+        
+        d3.json('sweden.geojson', function(data) {
+            var group = canvas.selectAll("g")
+                .data(data.features)
+                .enter()
+                .append("g");
+            
+            var projection = d3.geo.mercator().scale(250).translate([200, 500]);
+            
+            var path = d3.geo.path().projection(projection);
+            
+            var areas = group.append("path")
+                .attr("d", path)
+                .attr("class", "area")
+                .attr("fill", "steelblue")
+                .attr("stroke", "black")
+                .attr("stroke-width", 0.5);
+        });
+    </script>
+    
+</body>
+</html>

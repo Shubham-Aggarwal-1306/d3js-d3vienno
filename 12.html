@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+    <p>
+        This is a Paragraph
+    </p>
+    <script>
+        var data = [ 10, 20, 30, 40, 50 ];
+        var r = 300;
+        var color = d3.scale.ordinal()
+            .range(["red", "blue", "orange", "green", "yellow"]);
+        var canvas = d3.select("body")
+            .append("svg")
+            .attr("width", 1500)
+            .attr("height", 1500);
+        
+        var group = canvas.append("g")
+            .attr("transform", "translate(300,300)");
+
+        var arc = d3.svg.arc()
+            .innerRadius(0)
+            .outerRadius(r);
+
+        var pie = d3.layout.pie()
+            .value(function(d) { return d; }); 
+    </script>
+    
+</body>
+</html>

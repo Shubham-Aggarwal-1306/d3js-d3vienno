@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+
+    <p>
+        This is a Paragraph
+    </p>
+    <script>
+        var canvas = d3.select("body")
+            .append("svg")
+            .attr("width", 500)
+            .attr("height", 500);
+
+        var data = [
+            { x: 10, y: 20 },
+            { x: 40, y: 60 },
+            { x: 50, y: 70 }
+        ]
+
+        var group = canvas.append("g")
+            .attr("transform", "translate(100,100)");
+
+
+        var line = d3.svg.line()
+            .x(function(d) { return d.x; })
+            .y(function(d) { return d.y; });
+
+        group.selectAll("line")
+            .data([data])
+            .enter()
+            .append("path")
+            .attr("d", line)
+
+        var arc = d3.svg.arc()
+            .innerRadius(50)
+            .outerRadius(70)
+            .startAngle(0)
+            .endAngle(Math.PI / 2);
+
+        group.append("path")
+            .attr("d", arc)
+    </script>
+
+</body>
+
+</html>

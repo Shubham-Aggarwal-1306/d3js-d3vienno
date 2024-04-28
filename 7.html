@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+    <p>
+        This is a Paragraph
+    </p>
+    <script>
+        // enter() method
+        let canvas = d3.select('body')
+            .append('svg')
+            .attr('width', 500)
+            .attr('height', 500)
+            .attr('style', 'border: 1px solid black');
+        let data = [10];
+
+        let circle = canvas.selectAll('circle')
+            .data(data)
+            .enter()
+            .append('circle')
+            .attr('cx', 250)
+            .attr('cy', 250)
+            .attr('r', function(d) {
+                return d;
+            })
+            .attr('fill', 'red');
+        
+        let time = Date.now();
+
+        while (Date.now() < time + 1000) {
+            // Do nothing
+        }
+
+        // update() method
+
+        data = [20];
+
+        circle = canvas.selectAll('circle')
+            .data(data)
+            .attr('r', function(d) {
+                return d;
+            });
+        
+        // exit() method
+        time = Date.now();
+
+        while (Date.now() < time + 1000) {
+            // Do nothing
+        }
+
+        data = [];
+
+        circle = canvas.selectAll('circle')
+            .data(data)
+            .exit()
+            .remove();
+    </script>
+    
+</body>
+</html>

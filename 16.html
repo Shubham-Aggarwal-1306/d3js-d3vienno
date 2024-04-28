@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+    <script>
+        var color = d3.scale.category20b();
+
+        var canvas = d3.select("body")
+            .append("svg")
+            .attr("width", 500)
+            .attr("height", 500)
+            .append("g")
+            .attr("transform", "translate(50,50)");
+
+        var pack = d3.layout.pack()
+            .size([400, 400])
+            .padding(10);
+        
+        d3.json("d.json", function(data) {
+            var nodes = pack.nodes(data);
+            var links = pack.links(nodes);
+            console.log(links);
+            console.log(nodes);
+
+            var node = canvas.selectAll(".node")
+                .data(nodes)
+                .enter()
+                .append("g")
+                .attr("class", "node")
+                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+            
+            node.append("circle")
+                .attr("r", function(d) { return d.r; })
+                .attr("fill", function(d) { return color(d.value); })
+                .attr("stroke", "black");
+
+            canvas.selectAll("text")
+                .data(nodes)
+                .enter()
+                .append("text")
+                .text(function(d) { return d.children ? "" : d.name; })
+                .attr("x", function(d) { return d.x; })
+                .attr("y", function(d) { return d.y; })
+        });
+    </script>
+    
+</body>
+</html>

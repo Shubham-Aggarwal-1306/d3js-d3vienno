@@ -1,0 +1,25 @@
+{
+    "name": "CrazyRush",
+    "value": 100,
+    "children": [
+        {
+            "name": "Silphie",
+            "value": 50,
+            "children": [
+                {"name": "Aren", "value": 25},
+                {"name": "Arthur", "value": 25},
+                {"name": "Sub", "value": 25}
+            ]
+        },
+        {
+            "name": "Sylphie",
+            "value": 50,
+            "children": [
+                {"name": "Aren", "value": 25},
+                {"name": "Arthur", "value": 25},
+                {"name": "Sub", "value": 25}
+            ]
+        },
+        { "name" : "yeager", "value" : 75}
+    ]
+}

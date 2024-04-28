@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+    <p>
+        This is a Paragraph
+    </p>
+    <script>
+        let myScale = d3.scale.linear()
+        .domain([0, 180])
+        .range([0, 500]);
+        let canvas4 = d3.select("body")
+        .append("svg")
+        .attr("width", 500)
+        .attr("height", 500)
+        .style("border", "1px solid black");
+
+        let data4 = [10, 50, 120, 40, 30, 180];
+
+        let myScale2 = d3.scale.linear()
+        .domain([0, 180])
+        .range(['red', 'blue']);
+
+        let bars4 = canvas4.selectAll("rect")
+        .data(data4)
+        .enter()
+        .append("rect")
+        .attr("width", function(d) { return myScale(d); })
+        .attr("fill", function(d) { return myScale2(d); })
+        .attr("height", 50)
+        .attr("y", function(d, i) { return i * 100; })
+
+        var axis = d3.svg.axis()
+        .ticks(8)
+        .scale(myScale);
+
+        let canvas5 = d3.select("body")
+        .append("svg")
+        .attr("width", 500)
+        .attr("height", 500)
+        .style("border", "1px solid black")
+        .append("g")
+        .attr("transform", "translate(20, 0)")
+
+
+
+        let data5 = [10, 50, 120, 50, 30, 180];
+
+        let myScale5 = d3.scale.linear()
+        .domain([0, 180])
+        .range(['red', 'blue']);
+
+        let bars5 = canvas5.selectAll("rect")
+        .data(data5)
+        .enter()
+        .append("rect")
+        .attr("width", function(d) { return myScale(d); })
+        .attr("fill", function(d) { return myScale5(d); })
+        .attr("height", 50)
+        .attr("y", function(d, i) { return i * 100; })
+        canvas5.append("g")
+        .attr("transform", "translate(0, 480)")
+        .call(axis);
+    </script>
+    
+</body>
+</html>

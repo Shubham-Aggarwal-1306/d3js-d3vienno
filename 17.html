@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+    <script>
+        var padding = 50;
+        var width = 500;
+        d3.csv("ages.csv", function (data) {
+            let ages = data.map(function (d) {
+                return d.age;
+            });
+
+            let hist = d3.layout.histogram()
+                .bins(10)
+                (ages);
+
+            console.log(hist);
+
+            let y = d3.scale.linear()
+                .domain([0, d3.max(hist.map(function (d) { return d.length; }))])
+                .range([0, 500]);   
+            console.log(d3.min(ages) + " " + d3.max(ages))
+            let x = d3.scale.linear()
+                .domain([d3.min(ages), d3.max(ages)])
+                .range([0, 500]);
+                var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom");
+            let canvas = d3.select("body")
+                .append("svg")
+                .attr("width", 500)
+                .attr("height", 500 + padding)
+                .style("background", "#f4f4f4")
+                .append("g")
+                .attr("transform", "translate(10,0)")
+               
+            var group = canvas.append("g")
+                .attr("transform", "translate(0," + 530 + ")")
+                .call(xAxis);
+  
+            let bars = canvas.selectAll(".bar")
+                .data(hist)
+                .enter()
+                .append("g");
+
+            bars.append("rect")
+                .attr("x", function (d) { return x(d.x); })
+                .attr("y", function (d) { return 530 - y(d.y); })
+                .attr("width", function (d) { return width / hist.length - 1; })
+                .attr("height", function (d) { return y(d.y); })
+                .attr("fill", "steelblue");
+            bars.append("text")
+                .text(function (d) { return d.y; })
+                .attr("x", function (d) { return x(d.x); })
+                .attr("y", function (d) { return 530 - y(d.y); })
+                .attr("text-anchor", "middle")
+                .attr("dy", 15)
+                .attr("dx", 10)
+                .attr("fill", "white");
+        });
+    </script>
+</body>
+
+</html>

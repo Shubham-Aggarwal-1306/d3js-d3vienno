@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+    <p>
+        This is a Paragraph
+    </p>
+    <script>
+        // D3 arrays
+        let data = [10, 20, 30, 40, 50];
+
+        d3.max(data); // 50
+
+        d3.min(data); // 10
+
+        d3.extent(data); // [10, 50]
+
+        d3.sum(data); // 150
+
+        d3.mean(data); // 30
+
+        d3.median(data); // 30
+
+        d3.quantile(data.sort(d3.ascending), 0.25); // 20
+
+        d3.quantile(data.sort(d3.ascending), 0.5); // 30
+
+        d3.quantile(data.sort(d3.ascending), 0.75); // 40
+
+        d3.shuffle(data); // [40, 10, 30, 50, 20]
+
+        d3.shuffle(data); // [30, 20, 40, 10, 50]
+    </script>
+    
+</body>
+</html>

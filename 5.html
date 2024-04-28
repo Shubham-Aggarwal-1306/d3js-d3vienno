@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+    <p>
+        This is a Paragraph
+    </p>
+    <script>
+
+        let canvas3 = d3.select("body")
+        .append("svg")
+        .attr("width", 500)
+        .attr("height", 500)
+        .style("border", "1px solid black");
+
+        let data3 = [10, 50, 120, 40, 30, 180];
+
+        let myScale = d3.scale.linear()
+        .domain([0, 180])
+        .range([0, 500]);
+
+        let bars3 = canvas3.selectAll("rect")
+        .data(data3)
+        .enter()
+        .append("rect")
+        .attr("width", function(d) { return myScale(d); })
+        .attr("height", 50)
+        .attr("y", function(d, i) { return i * 100; })
+    </script>
+    
+</body>
+</html>

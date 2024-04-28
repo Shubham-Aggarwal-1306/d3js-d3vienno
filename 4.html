@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+
+    <p>
+        This is a Paragraph
+    </p>
+    <script>
+
+        let canvas2 = d3.select("body")
+        .append("svg")
+        .attr("width", 600)
+        .attr("height", 500)
+        .style("border", "1px solid black");
+
+        let data = [10, 50, 120, 40, 30, 180];
+        let bars = canvas2.selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("width", 50)
+        .attr("height", function(d) { return d + 60; })
+        .attr("x", function(d, i) { return i * 100 + 10; })
+        .attr("y", function(d) { return 420 - d; })
+        
+    </script>
+    
+</body>
+</html>
